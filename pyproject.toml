@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pythoneda-infrastructure-python-packages"
-version = "0.0.1a3"
+version = "0.0.1a4"
 description = "Infrastructure layer of Pythoneda Python Packages"
 authors = ["rydnr <github@acm-sl.org>"]
 readme = "README.md"

@@ -47,7 +47,7 @@
           pythoneda-infrastructure-python-packages =
             pythonPackages.buildPythonPackage rec {
               pname = "pythoneda-infrastructure-python-packages";
-              version = "0.0.1a3";
+              version = "0.0.1a4";
               src = ./.;
               format = "pyproject";
 
