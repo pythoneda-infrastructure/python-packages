@@ -1,5 +1,5 @@
 {
-  description = "Infrastructure layer of pythoneda-python-packages";
+  description = "Infrastructure layer of PythonEDA Python Packages";
 
   inputs = rec {
     nixos.url = "github:NixOS/nixpkgs/nixos-22.11";
@@ -10,20 +10,20 @@
       inputs.flake-utils.follows = "flake-utils";
     };
     pythoneda = {
-      url = "github:rydnr/pythoneda/0.0.1a5";
+      url = "github:pythoneda/base/0.0.1a7";
       inputs.nixos.follows = "nixos";
       inputs.flake-utils.follows = "flake-utils";
       inputs.poetry2nix.follows = "flake-utils";
     };
-    pythoneda-infrastructure-layer = {
-      url = "github:rydnr/pythoneda-infrastructure-layer/0.0.1a2";
+    pythoneda-infrastructure-base = {
+      url = "github:pythoneda-infrastructure/base/0.0.1a5";
       inputs.pythoneda.follows = "pythoneda";
       inputs.nixos.follows = "nixos";
       inputs.flake-utils.follows = "flake-utils";
       inputs.poetry2nix.follows = "flake-utils";
     };
     pythoneda-python-packages = {
-      url = "github:rydnr/pythoneda-python-packages/0.0.1a2";
+      url = "github:pythoneda/python-packages/0.0.1a3";
       inputs.pythoneda.follows = "pythoneda";
       inputs.nixos.follows = "nixos";
       inputs.flake-utils.follows = "flake-utils";
@@ -37,22 +37,24 @@
         pkgs = import nixos { inherit system; };
         python = pkgs.python3;
         pythonPackages = python.pkgs;
-        description = "Infrastructure layer of pythoneda-python-packages";
+        description = "Infrastructure layer of Pythoneda Python Packages";
         license = pkgs.lib.licenses.gpl3;
+        homepage =
+          "https://github.com/pythoneda-infrastructure/python-packages";
         maintainers = with pkgs.lib.maintainers; [ ];
       in rec {
         packages = {
-          pythoneda-python-packages-infrastructure =
+          pythoneda-infrastructure-python-packages =
             pythonPackages.buildPythonPackage rec {
-              pname = "pythoneda-python-packages-infrastructure";
-              version = "0.0.1a2";
+              pname = "pythoneda-infrastructure-python-packages";
+              version = "0.0.1a3";
               src = ./.;
               format = "pyproject";
 
               nativeBuildInputs = [ pkgs.poetry ];
 
               propagatedBuildInputs = with pythonPackages; [
-                pythoneda-infrastructure-layer.packages.${system}.pythoneda-infrastructure-layer
+                pythoneda-infrastructure-base.packages.${system}.pythoneda-infrastructure-base
                 pythoneda-python-packages.packages.${system}.pythoneda-python-packages
               ];
               pythonImportsCheck = [ ];
@@ -61,7 +63,7 @@
                 inherit description license homepage maintainers;
               };
             };
-          default = packages.pythoneda-python-packages-infrastructure;
+          default = packages.pythoneda-infrastructure-python-packages;
           meta = with lib; {
             inherit description license homepage maintainers;
           };

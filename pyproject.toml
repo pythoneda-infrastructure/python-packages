@@ -1,15 +1,16 @@
 [tool.poetry]
-name = "pythoneda-python-packages-infrastructure"
-version = "0.0.1a2"
-description = "Infrastructure layer of pythoneda-python-packages"
+name = "pythoneda-infrastructure-python-packages"
+version = "0.0.1a3"
+description = "Infrastructure layer of Pythoneda Python Packages"
 authors = ["rydnr <github@acm-sl.org>"]
 readme = "README.md"
-packages = [{include = "PythonEDAPythonPackagesInfrastructure"}]
+homepage = "https://github.com/pythoneda-infrastructure/python-packages"
+packages = [{include = "PythonEDAInfrastructurePythonPackages"}]
 
 [tool.poetry.dependencies]
-python = "^3.7"
-pythoneda-infrastructure-layer = "^0.0.1a2"
-pythoneda-python-packages = "^0.0.1a2"
+python = "^3.6"
+pythoneda-infrastructure-base = "^0.0.1a5"
+pythoneda-python-packages = "^0.0.1a3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.0"
